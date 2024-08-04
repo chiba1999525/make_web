@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title>ジャンルページ</title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<!-- ローカルcss,js-->
+	    
+	<!-- css -->
+	<link rel="stylesheet" th:href="@{/css/common.css}">
+	<link th:href="@{/css/genre/genre.css}" rel="stylesheet">
+	
+	<!-- JS -->
+	<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+
+
+	</head>
+	
+	<body>
+		
+		<div th:replace="admin/header :: headerFragment"></div> 		   
+		
+	    <main>
+			
+			<form th:action="@{/disp_genre}" th:object="${genre}" enctype="multipart/form-data" method="post">
+		        <div class="input-area">
+
+				<!-- フラッシュメッセージ -->			
+			    <ul>
+			        <li th:each="error : ${errorMessages}">
+			            <span th:text="${error}"></span>
+			        </li>
+			    </ul>
+					
+					<div class="input" style="display: none;">
+						<label>ID:<input type="text" th:field="*{id}"/></label>
+					</div>
+									
+					<div class="input">
+						<label>ジャンル名<input type="text" th:field="*{genreName}"/></label>
+					</div>
+					
+					<!-- 画像アップロード -->
+			        <!-- (accept)許可する拡張子 -->
+				    <div class="image" id="app">			      
+				        <span>画像</span>
+				        <span class="upload-box" >
+						  <!-- typeはfileを指定 -->
+						  <!-- accept はimage/*を指定 -->
+						  <!-- hiddenで非表示 -->
+						 <input type="file" name="file" onchange="previewFile(this);"
+				        accept="/upload, image/png, image/jpeg, application/pdf"
+						th:src="'data:image/png;base64,' + ${genre.simage}" />
+						</span><br/>
+				      </div>
+						
+					 <!-- アップロードした画像 -->
+					 <img id="preview">
+					</div>
+				
+					 <script>
+					  function previewFile(hoge){
+					    var fileData = new FileReader();
+					    fileData.onload = (function() {
+					      //id属性が付与されているimgタグのsrc属性に、fileReaderで取得した値の結果を入力することで
+					      //プレビュー表示している
+					      document.getElementById('preview').src = fileData.result;
+					    });
+					    fileData.readAsDataURL(hoge.files[0]);
+					  }
+					  </script>
+				
+				<div class="submit-save">
+					<button type="submit">保存</button>
+				</div>
+			</form>
+			
+			<div class="table-area">
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>ジャンル名</th>
+							<th>背景画像</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						<tr th:each="genre : ${genreAll}">
+									     
+							<td th:text="${genre.id}"></td>
+			                <td th:text="${genre.genreName}"></td>
+							<td>
+								<img th:if="${genre.simage != 0}" 								th:src="'data:image/png;base64,' + ${genre.simage}" />
+							</td>
+							<td>
+								<a th:href="@{/admin/genre(id=${genre.id})}">編集</a>
+							</td>
+                            <td>
+                              <a th:href="@{'/delete_genre/' + ${genre.id}}"
+			                    onclick="return confirm('削除してもよろしいですか？')">削除
+								</a>
+                            </td>
+			               
+			            </tr>
+						
+					</tbody>
+				</table>
+			</div>
+			
+	    </main>
+
+        <div th:replace="footer :: footerFragment"></div>
+
+	</body>
+</html>

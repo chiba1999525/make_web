@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title>お問い合わせ</title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<!-- ローカルcss,js-->
+	    
+	<!-- css -->
+	<link rel="stylesheet" th:href="@{/css/common.css}">
+	<link th:href="@{/css/inquiry/inquiry.css}" rel="stylesheet">
+	
+	<!-- JS -->
+	<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+
+
+	</head>
+	
+	<body>
+		
+		<div th:replace="admin/header :: headerFragment"></div>
+
+	    <main>
+			
+	        <div class="text-area">
+	            
+				<div class="text">
+					<label>タイトル
+					<div th:text="${inquiry.title}"/></label>
+				</div>
+				
+				<div class="text">
+					<label>投稿時間
+					<div th:text="${inquiry.datej}"/></label>
+				</div>
+								
+				<div class="text">
+					<label>お名前
+					<div th:text="${inquiry.name}"/></label>
+				</div>
+				
+				<div class="text">
+					<label>ご連絡先
+					<div th:text="${inquiry.address}"/></label>
+				</div>
+	
+				<div class="text">
+					<label>お問い合わせ内容
+					<div th:text="${inquiry.content}"/></label>
+				</div>
+				
+			</div>
+
+	    </main>
+
+        <div th:replace="footer :: footerFragment"></div>
+
+	</body>
+</html>

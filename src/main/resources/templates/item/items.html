@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title></title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	           <!-- css -->
+	<link rel="stylesheet" th:href="@{/css/common.css}">
+	<link th:href="@{/css/master.css}" rel="stylesheet">
+
+	<!-- JS -->
+	<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+	    
+
+	    
+	</head>
+	
+	<body>
+		
+        <div th:replace="header :: headerFragment"></div>
+		
+		<main>
+		   <div class="button-area">
+			 <label class="button">
+		        <a th:href="@{/}">Top</a>
+		      </label>
+		      <label class="button">
+		        <a th:href="@{/edit_item} + '?id=0'">追加</a>
+		      </label>
+		   </div>
+
+            <!-- フラッシュメッセージ -->			
+		    <ul>
+		        <li th:each="s : ${success}">
+		            <span th:text="${s}"></span>
+		        </li>
+		    </ul>
+		   
+		   <div class="table-area">
+		       
+		    <!-- itemデータベース -->
+			<table>
+			  <thead>
+			     <tr>
+			        <th>ID</th>
+			        <th>タイトル</th>
+                    <th>ジャンル</th>
+                    <th>クリック数</th>
+					<th>投稿日時</th>
+					<th>編集日時</th>
+					<th></th>
+			     </tr>
+			  </thead>
+			  <tbody>
+			     <tr th:each="item : ${itemAll}">
+
+			        <!-- itemテーブル -->
+					
+				    <!-- ID -->
+	                <td th:text="${item.id}"></td>
+	                
+	                <!-- タイトル・item更新ページへ遷移 -->
+	                <td th:text="${item.title}"></td>
+					
+                    <!-- ジャンル  -->
+	                <td th:text="${item.genreName}"></td>
+
+                    <!--クリック数-->
+					<td><span th:text="${item.clickNum}"/>回</td>
+					
+	                <!--  投稿日時 -->
+					<td th:text="${item.jnewDatetime}"></td>
+					
+					<!--  編集日時 -->
+					<td th:text="${item.jeditDatetime}" th:if="${item.jeditDatetime != ''}"></td>
+
+                    <!-- 詳細ボタン-->
+                    <td>
+						<button type="submit-show">
+	                     <a class="name" th:href="@{'/item/' + ${item.id}}">
+						   詳細                    
+						</a>
+						</button>
+                    </td>
+
+	            </tr>
+			  </tbody>
+			</table>    
+		   </div>
+		</main>
+		
+		<div th:replace="footer :: footerFragment"></div>
+	</body>
+</html>

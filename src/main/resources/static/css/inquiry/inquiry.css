@@ -1,0 +1,36 @@
+/* ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒªã‚¢ã®åŸºæœ¬ã‚¹ã‚¿ã‚¤ãƒ« */
+.text-area {
+    margin: 20px;
+    padding: 20px;
+    /* border: 1px solid #ddd; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+/* ãƒ©ãƒ™ãƒ«ã®ã‚¹ã‚¿ã‚¤ãƒ« */
+.text label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+    width: 70%;
+    margin: 0 auto;
+}
+
+/* å„ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ã‚¹ã‚¿ã‚¤ãƒ« */
+.text div {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+    white-space: pre-wrap;
+}
+
+/* ãƒ•ã‚©ãƒ¼ãƒ ã®å¤–æž  */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
