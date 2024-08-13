@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Make_web/title>
+
+		<!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<!-- css -->
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+
+	</head>
+	<body>
+      
+       <header th:fragment="headerFragment">
+	        <div class="container">
+	            <div class="header-top">
+                   <h1>
+	                  <a th:href="@{/}">Make_web</a>
+	               </h1>
+                </div>
+
+	            <nav>
+					<!--検索エリア-->
+					<div class="search-area">
+						<form th:action="@{/search}" method="post">
+							<label>
+								<input type="text" name="search"placeholder="検索" />
+							</label>
+						</form>
+					</div>
+				
+	                <div class="menu-icon">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </div>
+	                <ul class="nav-links">
+	                    <li><a th:href="@{/edit_inquiry}">お問い合わせ</a></li>
+	                </ul>
+	            </nav>
+	        </div>
+	    </header>
+	
+	    <script src="scripts.js"></script>
+			    
+	</body>
+</html>

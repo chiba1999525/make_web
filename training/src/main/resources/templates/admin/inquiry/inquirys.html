@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title></title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	           <!-- css -->
+	<link rel="stylesheet" th:href="@{/css/common.css}">
+	<link th:href="@{/css/inquiry/inquirys.css}" rel="stylesheet">
+
+	<!-- JS -->
+	<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+	    
+
+	    
+	</head>
+	
+	<body>
+		
+        <div th:replace="admin/header :: headerFragment"></div>
+		
+		<main>
+		   
+            <!-- inquiryデータベース -->
+		   <div class="table-area">
+			
+			<div class="null-inquiry" th:if="${inquiryAll == null}" >
+			  <h1>現在お問い合わせはありません</h1>
+			</div>
+			
+			<table th:if="${inquiryAll != null}" >
+			  <thead>
+			     <tr>
+                    <th></th>
+			        <th>投稿者</th>
+			        <th>タイトル</th>
+                    <th>連絡先</th>
+                    <th>投稿時間</th>
+					<th></th>
+					<th></th>
+			     </tr>
+			  </thead>
+			  <tbody>
+			     <tr th:each="inquiry : ${inquiryAll}">
+
+                    <!-- 既読チェック--> 
+                    <td class="td-check">
+						<sapn th:if="${inquiry.check == 0}" class="check">New</sapn>
+					</td>
+			   
+	                <!-- 投稿者 -->
+	                <td th:text="${inquiry.name}"></td>
+					
+					<!-- タイトル  -->
+	                <td th:text="${inquiry.title}"></td>
+
+                    <!-- 連絡先  -->
+	                <td th:text="${inquiry.address}"></td>
+
+                    <!--　投稿時間　-->
+					<td><span th:text="${inquiry.datej}"/></td>
+					
+                    <!-- 詳細ボタン-->
+                    <td class="td-button">
+						<button type="submit">
+	                     <a class="name" th:href="@{'/admin/inquiry/' + ${inquiry.id}}">
+						   詳細                    
+						</a>
+						</button>
+                    </td>
+
+                    <!-- 削除コマンド -->
+			       <td class="td-button">
+					<button type="submit">
+					<a th:href="@{'/delete_inquiry/' + ${inquiry.id}}"
+			        onclick="return confirm('削除してもよろしいですか？')">
+                     削除</a>
+                      </button></td>
+	            </tr>
+			  </tbody>
+			</table>  
+			  
+		   </div>
+		</main>
+		
+		<div th:replace="footer :: footerFragment"></div>
+	</body>
+</html>

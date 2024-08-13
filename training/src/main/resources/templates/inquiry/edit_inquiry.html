@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title>お問い合わせ</title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<!-- ローカルcss,js-->
+	    
+		<!-- css -->
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link th:href="@{/css/inquiry/edit_inquiry.css}" rel="stylesheet">
+		
+		<!-- JS -->
+		<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+		<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+		<script type="text/javascript" th:src="@{/javascript/inquiry.js}"></script>
+
+	</head>
+	
+	<body>
+		
+		<div th:replace="header :: headerFragment"></div>
+
+	    <main>
+			<h2>お問い合わせ</h2>
+			
+			<form th:action="@{/disp_edit_inquiry}" th:object="${inquiry}" method="post">
+		        <div class="input-area">
+
+                    <!-- フラッシュメッセージ -->			
+				    <ul>
+				        <li th:each="error : ${errorMessages}">
+				            <span th:text="${error}"></span>
+				        </li>
+				    </ul>
+                   
+                    <div class="message">
+						<h3 th:text="${success}" />
+					</div>
+
+					
+					<div class="input" style="display: none;">
+						<label>ID:<input type="text" th:field="*{id}"/></label>
+					</div>
+									
+					<div class="input">
+						<label>お名前
+						<input type="text" id="name" th:field="*{name}"/></label>
+					</div>
+					
+					<div class="input">
+						<label>ご連絡先
+						<input type="text" id="address" th:field="*{address}"/></label>
+					</div>
+					
+					<div class="input">
+						<label>タイトル
+						<input type="text" id="title" th:field="*{title}"/></label>
+					</div>
+					
+					<div class="input">
+						<label>お問い合わせ内容
+						<textarea type="text" id="content" class="content"style="white-space:pre-wrap;" th:field="*{content}"/></label>
+					</div>
+					
+				</div>
+				
+				<div class="submit-save">
+					<button type="submit">送信</button>
+				</div>
+			</form>
+		
+			
+	    </main>
+
+        <div th:replace="footer :: footerFragment"></div>
+
+	</body>
+</html>

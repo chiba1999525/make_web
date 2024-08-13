@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title></title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	 <!-- css -->
+	<link rel="stylesheet" th:href="@{/css/common.css}">
+	<link th:href="@{/css/item_click.css}" rel="stylesheet">
+
+	<!-- JS -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+	    
+
+	    
+	</head>
+	
+	<body>
+		
+        <div th:replace="admin/header :: headerFragment"></div>
+		
+		<main>
+
+			<!-- dayリスト -->
+			<div class="day-list">
+			  
+			  <div class="day">
+	   	         本日 <span th:text="${today}"></span>回
+			  </div>
+			  <div class="day">
+	   	         昨日 <span th:text="${yesterday}"></span>回
+			  </div>
+	          <div class="day">
+	   	         3日前 <span th:text="${days_ago3}"></span>回
+			  </div>
+	          <div class="day">
+	   	         総アクセス数 <span th:text="${click_all}"></span>回
+			  </div>
+			</div>
+			
+			<h4>本日のアクセス記録</h4>
+			
+            <!-- inquiryデータベース -->
+		   <div class="table-area">
+			<table>
+			  <thead>
+			     <tr>
+                    <th>投稿タイトル</th>
+			        <th>クリック時間</th>
+
+			     </tr>
+			  </thead>
+			  <tbody>
+			     <tr th:each="ic : ${ic_today}">
+                     
+	                <!-- タイトル -->
+	                <td th:text="${ic.title}"></td>
+					
+					<!-- 閲覧時間  -->
+	                <td th:text="${ic.datej}"></td>
+
+					
+			  </tbody>
+			</table>  
+			  
+		   </div>
+		</main>
+		
+		<div th:replace="footer :: footerFragment"></div>
+	</body>
+</html>

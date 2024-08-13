@@ -1,0 +1,68 @@
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-area {
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+
+.input {
+	margin:0 auto;
+    margin-bottom: 15px;
+    width: 50%;
+}
+
+#editItemForm > div:nth-child(5) > label > div {
+	    height: 555px;
+		overflow: scroll;/*はみ出した部分をスクロール領域に隠す*/
+}
+
+
+
+.input label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#div_editor1 {
+	height: 500px;
+}
+
+.input input[type="text"] {
+    width: calc(100% - 10px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+
+.submit-save {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-save button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: hand;
+    transition: background-color 0.3s;
+    height: 55px;
+    width: 150px;
+    font-size: 25px;
+}
+
+.submit-save button:hover {
+    background-color: #218838;
+}

@@ -1,0 +1,88 @@
+/* 投稿エリア全体のスタイル */
+.item-area {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+}
+
+.genre-item-title {
+	margin-top: 20px;
+	margin-left:40px;
+}
+
+
+.genre-item-title h1 {
+	border-bottom: 2px solid #000000;
+}
+
+/* 各投稿アイテムのスタイル */
+.genre-item-area {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+
+}
+
+.item {
+  width: fit-content;
+  margin: 20px;
+  position: relative;/*親要素にrelative*/
+  border: dashed 2px #6ca3a873;
+  border-radius: 20px;
+}
+
+.item:hover{
+	border: 2px solid #000000;
+}
+
+/* 投稿画像のスタイル */
+.item img {
+  width: 330px;
+  height: 220px;
+  padding: 0.2em 0.5em;
+  object-fit: cover;
+    filter: opacity(0.4);
+}
+
+
+/* ジャンル名のスタイル */
+.genre {
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+    position: absolute;/*重ねたい子要素にabsolute*/
+    top: 5%;
+    left: 10%;
+	background-color: beige;
+}
+
+/* タイトルのスタイル */
+.title {
+    font-size: 18px;
+    font-weight: bold;
+	padding: 10px;
+    color: #222;
+    position: absolute;/*重ねたい子要素にabsolute*/
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: beige;
+}
+
+/* 投稿時間のスタイル */
+.time {
+        font-size: 15px;
+    color: black;
+    position: absolute;
+    bottom: 0%;
+    right: 10%;
+    background-color: beige;
+}

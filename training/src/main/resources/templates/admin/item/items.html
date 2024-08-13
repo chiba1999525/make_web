@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title></title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	           <!-- css -->
+	<link rel="stylesheet" th:href="@{/css/common.css}">
+	<link th:href="@{/css/master.css}" rel="stylesheet">
+
+	<!-- JS -->
+	<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+	    
+
+	    
+	</head>
+	
+	<body>
+		
+        <div th:replace="admin/header :: headerFragment"></div>
+		
+		<main>
+            <!-- フラッシュメッセージ -->			
+		    <div class="flash-message">
+				<h2 th:text="${success}" />
+			</div>
+
+			<!--検索エリア-->
+			<div class="admin-search-area">
+				<form th:action="@{/admin/items}" method="post">
+					<label>
+						検索　<input type="text" name="search" />
+					</label>
+				</form>
+			</div>
+		   
+		   <div class="table-area">
+		       
+		    <!-- itemデータベース -->
+			<table>
+			  <thead>
+			     <tr>
+			        <th>ID</th>
+			        <th>タイトル</th>
+                    <th>ジャンル</th>
+                    <th>クリック数</th>
+					<th>投稿日時</th>
+					<th>編集日時</th>
+					<th></th>
+					<th></th>
+			     </tr>
+			  </thead>
+			  <tbody>
+				
+				<!-- item一覧テーブル -->
+			     <tr th:if="${itemAll != null}" th:each="item : ${itemAll}">
+				    <!-- ID -->
+	                <td th:text="${item.id}"></td>
+	                
+	                <!-- タイトル・item詳細ページへ遷移 -->
+	                <td>
+					   <a class="name" th:href="@{'/admin/item/' + ${item.title}}">
+					     <span th:text="${item.title}"></span>
+					   </a>
+					</td>
+                    <!-- ジャンル  -->
+	                <td th:text="${item.genreName}"></td>
+
+                    <!--クリック数-->
+					<td><span th:text="${item.clickNum}"/>回</td>
+					
+	                <!--  投稿日時 -->
+					<td th:text="${item.jnewDatetime}"></td>
+					
+					<!--  編集日時 -->
+					<td th:text="${item.jeditDatetime}" th:if="${item.jeditDatetime != ''}"></td>
+
+                    <!-- 編集ボタン-->
+                    <td>
+						
+	                   <a class="name" th:href="@{/admin/edit_item(id=${item.id})}">
+						<button type="submit-show">
+							編集		      
+			            </button>                 
+					   </a>
+						
+                    </td>
+
+                    <!-- 削除コマンド -->
+			       <td>
+					
+					<a th:href="@{'/admin/delete_item/' + ${item.id}}"
+			        onclick="return confirm('削除してもよろしいですか？')">
+					<button type="submit-delete">
+                     削除
+					</button></a>
+                   </td>
+	            </tr>
+
+				<!--検索結果-->
+				<tr th:if="${searchItem != null}" th:each="item : ${searchItem}">
+					 <!-- itemテーブル -->
+					
+				    <!-- ID -->
+	                <td th:text="${item.id}"></td>
+	                
+	                <!-- タイトル・item詳細ページへ遷移 -->
+	                <td>
+					   <a class="name" th:href="@{'/admin/item/' + ${item.title}}">
+					     <span th:text="${item.title}"></span>
+					   </a>
+					</td>
+					
+                    <!-- ジャンル  -->
+	                <td th:text="${item.genreName}"></td>
+
+                    <!--クリック数-->
+					<td><span th:text="${item.clickNum}"/>回</td>
+					
+	                <!--  投稿日時 -->
+					<td th:text="${item.jnewDatetime}"></td>
+					
+					<!--  編集日時 -->
+					<td th:text="${item.jeditDatetime}" th:if="${item.jeditDatetime != ''}"></td>
+
+                    <!-- 編集ボタン-->
+                    <td>
+						
+	                   <a class="name" th:href="@{/admin/edit_item(id=${item.id})}">
+						<button type="submit-show">
+							編集		      
+			            </button>                 
+					   </a>
+						
+                    </td>
+
+                    <!-- 削除コマンド -->
+			       <td>
+					
+					<a th:href="@{'/admin/delete_item/' + ${item.id}}"
+			        onclick="return confirm('削除してもよろしいですか？')">
+					<button class="delete" type="submit-delete">
+                     削除
+					</button></a>
+                   </td>
+	            </tr>
+					
+			  </tbody>
+			</table>    
+		   </div>
+		</main>
+		
+		<div th:replace="footer :: footerFragment"></div>
+	</body>
+</html>

@@ -1,0 +1,105 @@
+main {
+    display: flex;
+    padding: 0;
+    background-color: #fff;
+    margin: 60px 0 0 0;
+    min-height: 700px;
+}
+
+.left-side {
+    width: 15%;
+    margin: 30px;
+    background-color: #fff;
+	position: fixed;
+	top: 30px;
+    left: 0;
+    z-index: 2;
+}
+
+.right-side {
+    width: 15%;
+    margin: 30px;
+    background-color: #fff;
+	position: fixed;
+	top: 30px;
+    right: 0;
+    z-index: 2;
+}
+
+.main-area {
+    width: 70%;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.item-area {
+	margin:20px 60px;
+	padding: 20px;
+	border: 1px solid #ddd;
+	border-radius: 20px;
+	min-height: 80%;
+}
+
+.item-area hr {
+	border-width: 3px 0 0 0;
+	border-style: double;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.item-show {
+    margin-bottom: 10px;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-show a {
+	text-decoration: none;
+	color:black;
+}
+
+.item-show a:hover {
+	text-decoration: underline;
+    cursor: pointer;
+}
+
+.genre {
+    flex-grow: 1;
+}
+
+.time {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.item-area .item-content {
+	margin-top: 10px;
+	overflow: scroll;/*はみ出した部分をスクロール領域に隠す*/
+	min-height: 500px;
+}
+
+.content {
+    white-space: pre-wrap;
+	
+}
+
+.button-area {
+	text-align: center;
+}
+
+.button-area button {
+	    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 15%;
+    height: 50px;
+    font-size: 20px;
+}

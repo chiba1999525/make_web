@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title>新規登録</title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<!-- TrumbowygをCDNで読み込み -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.25.2/trumbowyg.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.25.2/ui/trumbowyg.min.css">
+		
+		<!--　リッチエディタ -->
+		<link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+		<script type="text/javascript" src="/richtexteditor/rte.js"></script>
+		<script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
+		
+        <!-- css -->
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link th:href="@{/css/item/edit_item.css}" rel="stylesheet">
+		
+		<!-- JS -->
+		<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+		<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+		
+		<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+</head>
+<body>
+	    
+	</head>
+	
+	<body>
+	
+	     <div th:replace="admin/header :: headerFragment"></div>
+		
+		   	  		   
+		
+	    <main>
+
+
+		   <h1 th:if="${item.id != 0}">更新</h1>	
+		   <h1 th:if="${item.id == 0}">新規登録</h1>
+
+            
+
+            <!-- item入力エリア-->
+            <div class="input-area">
+
+			<!-- フラッシュメッセージ -->			
+		    <ul>
+		        <li th:each="error : ${errorMessages}">
+		            <span th:text="${error}"></span>
+		        </li>
+		    </ul>
+
+		       <!-- 新規・更新処理 -->
+		       <form id="editItemForm" th:action="@{/disp_edit_item}" th:object="${item}"
+				 method="post">
+			        <!-- ID -->
+				    <div class="input-id" style=" display: none;">				      
+				      <label>ID: <input type="text" th:field="*{id}" /></label><br/>
+				    </div>
+
+                    <!--ジャンル選択-->
+                    <div class="input">
+						<label>ジャンル名
+						    <select class="genre" th:field="*{genreId}">
+						        <option th:value="0">選択してください</option>
+						        <option th:each="genre : ${genreAll}" th:value="${genre.id}" th:text="${genre.genreName}"></option>
+						    </select>
+						</label>
+					</div>
+
+			    	<!-- タイトル -->
+				    <div class="input">				      
+				      <label>タイトル <input type="text" th:field="*{title}" /></label><br/>
+				    </div>
+				    
+				   	<!-- 説明 新規 -->
+		            <!-- リッチテキストエディタを適用するテキストエリア -->
+		            <div class="input">
+		               <label>説明 <textarea class="content" id="content" th:field="*{content}"></textarea></label><br/>
+		            </div>
+					
+		
+		            <script>
+		                 // content テキストエリアからデータを取得
+				        var content = document.getElementById('content').value;
+				        
+				        // RichTextEditor インスタンスを作成
+				        var editor1 = new RichTextEditor("#content");
+				
+				        // エディタに content データを設定
+				        editor1.setHTMLCode(content);						
+		            </script>
+							
+    
+                    <!-- 保存ボタン -->		    
+			    	<div class="submit-save">
+			    	    <button type="submit" id="submit-save">保存</button>
+			    	</div>
+			   </form>
+
+			</div>	
+			
+	    </main>
+
+        <div th:replace="footer :: footerFragment"></div>
+
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title th:text="${item.title}"></title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    
+		<!--　リッチエディタ -->
+		<link rel="stylesheet" href="/richtexteditor/rich.css" />
+		<link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+		<script type="text/javascript" src="/richtexteditor/rte.js"></script>
+		<script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
+		<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+		
+		<!-- css -->
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link rel="stylesheet" th:href="@{/css/item/item.css}">
+		
+		<!-- JS -->
+		<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+		<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+		   
+	</head>
+	
+	<body>
+		
+	  <div th:replace="header :: headerFragment"></div>
+
+	  <main>
+          
+          <!--レフト広告エリア-->
+		  <div class="left-side"></div>
+
+          <!--メインエリア-->
+          <div class="main-area">
+
+          	<!--投稿エリア-->
+			<article class="item-area">
+				
+		        <!-- タイトル -->
+		        <div class="title">
+				  <h2 th:text="${item.title}"></h2>
+				</div>
+
+				<div class="item-show">
+				   <!-- ジャンル  -->
+					<a th:href="@{'/genre_item/' + ${item.genreName}}">
+			          <span class="genre" th:text="${item.genreName}"></span>
+					</a>
+
+					<!--  投稿日時 -->
+					<span class="time" th:if="${item.editDatetime == null}" th:text="${item.jnewDatetime}"></span>
+					
+					<!--  編集日時 -->
+					<span class="time" th:if="${item.editDatetime != null}" th:text="${item.jeditDatetime}"></span>
+				</div>
+				
+				<hr>
+				
+				<!-- コンテンツ  -->
+		        <div class="item-content" id="div_editor1" th:utext="${item.content}"></div>
+
+				
+			  </article>
+		  </div>
+
+		  <!--ライト広告エリア-->
+          <div class="right-side"></div>
+
+		</main>
+		
+		<div th:replace="footer :: footerFragment"></div>
+		
+	</body>
+</html>
